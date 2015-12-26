@@ -33,6 +33,7 @@ function bench_index_setup_document() {
 	beans_remove_action( 'beans_post_meta' );
 	beans_remove_action( 'beans_post_meta_tags' );
 	beans_modify_action( 'beans_post_meta_categories', 'beans_post_header', null, 7 );
+	beans_remove_output( 'beans_post_meta_categories_prefix' );
 
 	// Post image
 	beans_modify_action( 'beans_post_image', 'beans_post_header_before_markup', 'beans_post_image' );
