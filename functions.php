@@ -118,6 +118,7 @@ function bench_setup_document() {
 
 }
 
+// Author profile in posts
 function bench_author_profile() {
 
 	echo beans_open_markup( 'bench_author_profile', 'div',  array( 'class' => 'uk-panel-box' ) );
@@ -133,9 +134,9 @@ function bench_author_profile() {
 }
 
 // Add avatar uikit rounded border class (filter)
-beans_add_smart_action( 'get_avatar', 'jenkins_avatar' );
+beans_add_smart_action( 'get_avatar', 'bench_avatar' );
 
-function jenkins_avatar( $output ) {
+function bench_avatar( $output ) {
 
 	return str_replace( "class='avatar", "class='avatar uk-border-rounded", $output ) ;
 
@@ -199,7 +200,6 @@ function bench_bottom_widget_area() {
 	echo beans_close_markup( 'bench_bottom', 'section' );
 
 }
-
 
 // Add footer content (filter)
 beans_add_smart_action( 'beans_footer_credit_right_text_output', 'bench_footer' );
