@@ -101,7 +101,10 @@ function bench_setup_document() {
 		beans_add_attribute( 'beans_post_title', 'class', 'uk-margin-small-bottom' );
 
 		// Post navigation
-		beans_add_attribute( 'beans_post_navigation', 'class', 'uk-grid-margin uk-margin-bottom-remove' );
+		beans_add_attribute( 'beans_post_navigation', 'class', 'uk-grid-margin' );
+
+		// Post author profile
+		add_action( 'beans_post_navigation_after_markup', 'bench_author_profile' );
 
 		// Post comments
 		beans_add_attribute( 'beans_comments', 'class', 'uk-margin-bottom-remove' );
@@ -115,6 +118,28 @@ function bench_setup_document() {
 
 }
 
+function bench_author_profile() {
+
+	echo beans_open_markup( 'bench_author_profile', 'div',  array( 'class' => 'uk-panel-box' ) );
+
+	echo '<h3 class="uk-panel-title">'.__('About the author', 'bench').'</h3>';
+	echo '<div class="uk-clearfix">';
+	  echo '<div class="uk-align-left">'.get_avatar( get_the_author_meta('ID'), 96 ).'</div>';
+   	echo '<div class="uk-text-large uk-text-bold">'.get_the_author_meta('display_name').'</div>';
+		echo wpautop(get_the_author_meta('description'));
+	echo '</div>';
+	echo beans_close_markup( 'bench_author_profile', 'div' );
+
+}
+
+// Add avatar uikit rounded border class (filter)
+beans_add_smart_action( 'get_avatar', 'jenkins_avatar' );
+
+function jenkins_avatar( $output ) {
+
+	return str_replace( "class='avatar", "class='avatar uk-border-rounded", $output ) ;
+
+}
 
 // Add primaray menu search field
 beans_add_smart_action( 'beans_primary_menu_append_markup', 'bench_primary_menu_search' );
