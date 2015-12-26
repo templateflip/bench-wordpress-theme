@@ -55,16 +55,6 @@ function bench_layouts( $layouts ) {
 }
 
 
-// Set the default layout (filter)
-beans_add_smart_action( 'beans_default_layout', 'bench_default_layout' );
-
-function bench_default_layout() {
-
-	return 'bench_c';
-
-}
-
-
 // Remove page post type comment support
 beans_add_smart_action( 'init', 'bench_post_type_support' );
 
@@ -104,6 +94,9 @@ function bench_setup_document() {
 	// Only applies to singular and not pages
 	if ( is_singular() && !is_page() ) {
 
+		//remove featured image
+		beans_remove_action( 'beans_post_image' );
+		
 		// Post title
 		beans_add_attribute( 'beans_post_title', 'class', 'uk-margin-small-bottom' );
 
