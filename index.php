@@ -42,7 +42,7 @@ function bench_index_setup_document() {
 	beans_add_attribute( 'beans_post_title', 'class', 'uk-margin-small-top uk-h3' );
 
 	// Post more link
-	beans_add_attribute( 'beans_post_more_link', 'class', 'uk-button uk-button-mini' );
+	beans_add_attribute( 'beans_post_more_link', 'class', 'uk-button uk-button-primary uk-button-small' );
 
 	// Posts pagination
 	beans_modify_action_hook( 'beans_posts_pagination', 'beans_content_after_markup' );
