@@ -78,7 +78,7 @@ function bench_setup_document() {
 	beans_remove_attribute( 'beans_site_title_tag', 'class', 'uk-text-muted' );
 
 	// Breadcrumb
-	beans_remove_action( 'beans_breadcrumb' );
+	//beans_remove_action( 'beans_breadcrumb' );
 
 	// Post meta
 	beans_add_attribute( 'beans_post_meta_date', 'class', 'uk-text-muted' );
@@ -96,7 +96,7 @@ function bench_setup_document() {
 
 		//remove featured image
 		beans_remove_action( 'beans_post_image' );
-		
+
 		// Post title
 		beans_add_attribute( 'beans_post_title', 'class', 'uk-margin-small-bottom' );
 
