@@ -1,9 +1,9 @@
 <?php
 
 // Modify the search page markup
-beans_add_smart_action( 'beans_before_load_document', 'banks_search_setup_document' );
+beans_add_smart_action( 'beans_before_load_document', 'bench_search_setup_document' );
 
-function banks_search_setup_document() {
+function bench_search_setup_document() {
 
     // Post
     beans_add_attribute( 'beans_search_title', 'class', 'uk-margin-bottom-remove' );
@@ -28,29 +28,29 @@ function banks_search_setup_document() {
 
 
 // Add the search form
-beans_add_smart_action( 'beans_search_title_after_markup', 'banks_search_field' );
+beans_add_smart_action( 'beans_search_title_after_markup', 'bench_search_field' );
 
-function banks_search_field( $content ) {
+function bench_search_field( $content ) {
 
-	echo beans_open_markup( 'banks_search_content', 'div', array( 'class' => 'uk-grid-margin' ) );
+	echo beans_open_markup( 'bench_search_content', 'div', array( 'class' => 'uk-grid-margin' ) );
 
     	get_search_form();
 
-   	echo beans_close_markup( 'banks_search_content', 'div' );
+   	echo beans_close_markup( 'bench_search_content', 'div' );
 
 }
 
 
 // Clean up the search results item markup
-beans_add_smart_action( 'the_content', 'banks_search_content' );
+beans_add_smart_action( 'the_content', 'bench_search_content' );
 
-function banks_search_content( $content ) {
+function bench_search_content( $content ) {
 
-    $output = beans_open_markup( 'banks_search_content', 'p' );
+    $output = beans_open_markup( 'bench_search_content', 'p' );
 
-    	$output .= beans_output( 'banks_search_post_content', substr( strip_tags( $content ), 0, 150 ) . ' ...' );
+    	$output .= beans_output( 'bench_search_post_content', substr( strip_tags( $content ), 0, 150 ) . ' ...' );
 
-   	$output .= beans_close_markup( 'banks_search_content', 'p' );
+   	$output .= beans_close_markup( 'bench_search_content', 'p' );
 
    	return $output;
 
