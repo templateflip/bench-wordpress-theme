@@ -54,7 +54,7 @@ beans_add_smart_action( 'beans_edit_post_image_args', 'bench_index_post_image_ar
 
 function bench_index_post_image_args( $args ) {
 
-	$args['resize'] = array( 430, 250, true );
+	$args['resize'] = array( 430, 250, true ); //430, 250
 
 	return $args;
 
