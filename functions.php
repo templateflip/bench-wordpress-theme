@@ -206,6 +206,6 @@ beans_add_smart_action( 'beans_footer_credit_right_text_output', 'bench_footer' 
 
 function bench_footer() { ?>
 
-  Built-with <a href="http://themes.kanishkkunal.in/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>.
+  <a href="http://themes.kanishkkunal.in/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
 
 <?php }
