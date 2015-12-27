@@ -104,7 +104,7 @@ function bench_setup_document() {
 		beans_add_attribute( 'beans_post_navigation', 'class', 'uk-grid-margin' );
 
 		// Post author profile
-		add_action( 'beans_post_navigation_after_markup', 'bench_author_profile' );
+		add_action( 'beans_comments_before_markup', 'bench_author_profile' );
 
 		// Post comments
 		beans_add_attribute( 'beans_comments', 'class', 'uk-margin-bottom-remove' );
