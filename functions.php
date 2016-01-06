@@ -96,6 +96,12 @@ function bench_setup_document() {
 	if ( beans_get_layout() == 'bench_c' )
 		beans_add_attribute( 'beans_content', 'class', 'tm-centered-content' );
 
+	if ( is_user_logged_in() ) {
+		//Add edit post link when user is logged in
+		if( is_singular() )
+			beans_add_smart_action('beans_post_header_before_markup', 'bench_edit_link');
+	}
+
 	// Only applies to singular and not pages
 	if ( is_singular() && !is_page() ) {
 
@@ -115,6 +121,11 @@ function bench_setup_document() {
 		beans_remove_action( 'beans_comment_form_divider' );
 
 	}
+}
+
+
+function bench_edit_link() {
+		edit_post_link( __( 'Edit', 'bench' ), '<div class="uk-margin-bottom-small uk-text-small uk-align-right"><i class="uk-icon-pencil-square-o"></i> ', '</div>' );
 }
 
 // Author profile in posts
