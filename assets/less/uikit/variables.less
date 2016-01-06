@@ -1,15 +1,17 @@
 // Global variables
 // ========================================================================
 
-@global-color:                                  #444;
+@global-background-color:                      #2F353E;
+
+@global-color:                                  lighten(@global-background-color, 10);
 @global-muted-color:                            #999;
 
+@global-header-background:                      @global-background-color;
+@global-primary-background:                     #8D5992;
 @global-link-color:                             #8D5992;
-@global-link-hover-color:                       #8D5992;
+@global-link-hover-color:                       @global-link-color;
 
 @global-line-height:                            22px;
-
-@global-primary-background:                     @global-link-color;
 
 @global-height:                                 40px;
 @global-height-large:                           50px;

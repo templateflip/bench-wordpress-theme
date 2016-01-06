@@ -102,9 +102,6 @@ function bench_setup_document() {
 		//remove featured image
 		beans_remove_action( 'beans_post_image' );
 
-		// Post title
-		beans_add_attribute( 'beans_post_title', 'class', 'uk-margin-small-bottom' );
-
 		// Post navigation
 		beans_add_attribute( 'beans_post_navigation', 'class', 'uk-grid-margin' );
 
@@ -118,9 +115,6 @@ function bench_setup_document() {
 		beans_add_attribute( 'beans_no_comment', 'class', 'tm-no-comments uk-text-center uk-text-large uk-block' );
 
 	}
-	if ( get_bloginfo( 'description' ) )
-		beans_add_attribute( 'beans_primary_menu', 'class', 'uk-margin-small-top' );
-
 }
 
 // Author profile in posts
@@ -207,7 +201,7 @@ function bench_bottom_widget_area() {
 	if( !beans_is_active_widget_area( 'bottom' ) )
 		return;
 
-	echo beans_open_markup( 'bench_bottom', 'section', array( 'class' => 'tm-bottom uk-block uk-padding-bottom-remove' ) );
+	echo beans_open_markup( 'bench_bottom', 'section', array( 'class' => 'tm-bottom uk-block' ) );
 
 		echo beans_open_markup( 'beans_fixed_wrap[_bottom]', 'div', 'class=uk-container uk-container-center' );
 
