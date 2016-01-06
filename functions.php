@@ -221,3 +221,28 @@ function bench_footer() { ?>
   <a href="http://themes.kanishkkunal.in/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
 
 <?php }
+
+
+//Customizer fields
+
+//Additional Header & Footer Codes (for Google Analytics)
+add_action( 'init', 'bench_customization_fields' );
+function bench_customization_fields() {
+
+	$fields = array(
+		array(
+			'id' => 'bench_head_code',
+			'label' => __( 'Additional Head Code', 'bench' ),
+			'type' => 'textarea',
+			'default' => ''
+		)
+	);
+
+	beans_register_wp_customize_options( $fields, 'bench_custom_code', array( 'title' => __( 'Custom Code', 'bench' ), 'priority' => 1100 ) );
+}
+
+add_action('beans_head_append_markup', 'bench_custom_head_code');
+
+function bench_custom_head_code() {
+	echo get_theme_mod( 'bench_head_code', '' );
+}
