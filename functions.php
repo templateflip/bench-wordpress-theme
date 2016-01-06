@@ -133,6 +133,19 @@ function bench_author_profile() {
 
 }
 
+// Modify beans layout (filter)
+beans_add_smart_action( 'beans_layout_grid_settings', 'bench_layout_grid_settings' );
+
+function bench_layout_grid_settings( $layouts ) {
+
+	return array_merge( $layouts, array(
+		'grid' => 10,
+		'sidebar_primary' => 3,
+		'sidebar_secondary' => 3,
+	) );
+
+}
+
 // Add avatar uikit rounded border class (filter)
 beans_add_smart_action( 'get_avatar', 'bench_avatar' );
 
