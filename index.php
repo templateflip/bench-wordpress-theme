@@ -15,6 +15,11 @@ beans_add_smart_action( 'beans_before_load_document', 'bench_index_setup_documen
 
 function bench_index_setup_document() {
 
+	//Layout
+	if(beans_get_layout( ) == 'c') {
+		beans_remove_attribute( 'beans_primary', 'class', 'uk-width-large-7-10' );
+	}
+
 	// Posts grid
 	beans_add_attribute( 'beans_content', 'class', 'tm-posts-grid uk-grid uk-grid-width-small-1-2 uk-grid-width-medium-1-3' );
 	beans_add_attribute( 'beans_content', 'data-uk-grid-margin', '' );

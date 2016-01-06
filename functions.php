@@ -75,10 +75,15 @@ function bench_setup_document() {
 		beans_remove_attribute( 'beans_post', 'class', 'uk-panel-box' );
 
 	// Site Logo
-	beans_remove_attribute( 'beans_site_title_tag', 'class', 'uk-text-muted' );
+	beans_remove_action( 'beans_site_title_tag' );
 
-	// Breadcrumb
-	//beans_remove_action( 'beans_breadcrumb' );
+	// Layout
+	if(beans_get_layout( ) != 'c') {
+		beans_remove_attribute( 'beans_primary', 'class', 'uk-width-medium-7-10' );
+		beans_add_attribute( 'beans_primary', 'class', 'uk-width-large-7-10' );
+		beans_remove_attribute( 'beans_sidebar_primary', 'class', 'uk-width-medium-3-10' );
+		beans_add_attribute( 'beans_sidebar_primary', 'class', 'uk-width-large-3-10 uk-visible-large' );
+ }
 
 	// Post meta
 	beans_add_attribute( 'beans_post_meta_date', 'class', 'uk-text-muted' );
