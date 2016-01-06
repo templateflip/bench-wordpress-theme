@@ -111,8 +111,8 @@ function bench_setup_document() {
 		// Post comments
 		beans_add_attribute( 'beans_comments', 'class', 'uk-margin-bottom-remove' );
 		beans_add_attribute( 'beans_comment_form_wrap', 'class', 'uk-contrast' );
-		beans_add_attribute( 'beans_comment_form_submit', 'class', 'uk-button-large' );
 		beans_add_attribute( 'beans_no_comment', 'class', 'tm-no-comments uk-text-center uk-text-large uk-block' );
+		beans_remove_action( 'beans_comment_form_divider' );
 
 	}
 }
