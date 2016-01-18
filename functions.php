@@ -211,6 +211,12 @@ function bench_primary_menu_search() {
 
 }
 
+// Modify the read more text.
+add_filter( 'beans_post_more_link_text_output', 'bench_modify_read_more' );
+
+function bench_modify_read_more() {
+   return 'Read more';
+}
 
 // Remove comment after note (filter)
 beans_add_smart_action( 'comment_form_defaults', 'bench_comment_form_defaults' );

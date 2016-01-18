@@ -39,6 +39,7 @@ function bench_index_setup_document() {
 	beans_remove_action( 'beans_post_meta_tags' );
 	beans_modify_action( 'beans_post_meta_categories', 'beans_post_header', null, 7 );
 	beans_remove_output( 'beans_post_meta_categories_prefix' );
+	beans_add_attribute( 'beans_post_meta_categories', 'class', 'tm-post-category');
 
 	// Post image
 	beans_modify_action( 'beans_post_image', 'beans_post_header_before_markup', 'beans_post_image' );
@@ -47,10 +48,31 @@ function bench_index_setup_document() {
 	beans_add_attribute( 'beans_post_title', 'class', 'uk-margin-small-top uk-h3' );
 
 	// Post more link
-	beans_add_attribute( 'beans_post_more_link', 'class', 'uk-button uk-button-small' );
+	//beans_add_attribute( 'beans_post_more_link', 'class', 'uk-button uk-button-small' );
 
 	// Posts pagination
 	beans_modify_action_hook( 'beans_posts_pagination', 'beans_content_after_markup' );
+
+}
+
+
+/* Helpers and utility functions */
+require_once 'include/helpers.php';
+
+// Auto generate summary of Post content and read more button
+beans_add_smart_action( 'the_content', 'bench_post_content' );
+
+function bench_post_content( $content ) {
+
+    $output = beans_open_markup( 'bench_post_content', 'p' );
+
+    	$output .= beans_output( 'bench_post_content_summary', bench_get_excerpt( $content ) );
+
+   	$output .= beans_close_markup( 'bench_post_content', 'p' );
+
+		$output .= '<p>'.beans_post_more_link().'</p>';
+
+   	return $output;
 
 }
 
