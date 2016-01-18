@@ -286,24 +286,36 @@ function bench_footer_content() {
 	?>
 	<div class="uk-grid uk-text-muted">
 		<div class="uk-width-medium-1-2">
-			<p>
 	<?php
+		echo '<div class="uk-clearfix">';
+		if ( $logo = get_theme_mod( 'beans_logo_image', false ) ) {
+			echo beans_selfclose_markup( 'bench_footer_logo_image', 'img', array(
+				'class' => 'tm-footer-logo uk-align-left uk-margin-right',
+				'src' => esc_url( $logo ),
+				'alt' => esc_attr( $name ),
+				) );
+		}
+		if ($description = get_bloginfo( 'description' )) {
+			echo '<p>'.$description.'</p>';
+		}
+		echo '</div>';
+		echo '<p>';
 		echo beans_output( 'beans_footer_credit_text', sprintf(
 				__( '&#x000A9; %1$s - Copyright %2$s. All rights reserved.', 'bench' ),
 				date( "Y" ),
 				get_bloginfo( 'name' )
 			) );
+		echo '</p>';
 	?>
-	  	</p>
-			<p class="uk-text-small">
-				<a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
-			</p>
 		</div>
 	<div class="uk-width-medium-1-2">
 	<?php bench_bottom_widget_area(); ?>
 	</div>
 </div>
-	<?php
+<div class="uk-text-muted uk-text-small uk-text-center uk-margin-top">
+			<a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
+</div>
+<?php
 }
 
 //Setup Widgets
