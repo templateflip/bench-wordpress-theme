@@ -69,11 +69,14 @@ function bench_layouts( $layouts ) {
 
 
 // Remove page post type comment support
-beans_add_smart_action( 'init', 'bench_post_type_support' );
+beans_add_smart_action( 'init', 'bench_init' );
 
-function bench_post_type_support() {
+function bench_init() {
 
 	remove_post_type_support( 'page', 'comments' );
+
+	// Register additional menus, we already have a Primary menu registered
+	register_nav_menu('social-menu', __( 'Social Menu', 'bench'));
 
 }
 
@@ -265,6 +268,16 @@ function bench_sub_footer_widget_area() {
 
 }
 
+function bench_add_nav_menu_atts( $atts, $item, $args ) {
+	//check if icon class is applied to menu and apply equivalent uk-icon to nav menu link
+	if(count($item->classes) >= 1) {
+		if(substr($item->classes[0], 0, 5) === "icon-") {
+			$atts['class'] = $atts['class'].' uk-'.$item->classes[0];
+		}
+	}
+  return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'bench_add_nav_menu_atts', 10, 4);
 
 // The bottom widget area
 function bench_bottom_widget_area() {
@@ -285,7 +298,7 @@ function bench_footer_content() {
 
 	?>
 	<div class="uk-grid uk-text-muted">
-		<div class="uk-width-medium-1-2">
+		<div class="uk-width-medium-1-3">
 	<?php
 		echo '<div class="uk-clearfix">';
 		if ( $logo = get_theme_mod( 'beans_logo_image', false ) ) {
@@ -295,25 +308,36 @@ function bench_footer_content() {
 				'alt' => esc_attr( $name ),
 				) );
 		}
+
 		if ($description = get_bloginfo( 'description' )) {
-			echo '<p>'.$description.'</p>';
+			echo '<p class="uk-margin-small-top uk-margin-small-bottom">'.$description.'</p>';
 		}
+
+	  wp_nav_menu( array( 'theme_location' => 'social-menu',
+												'container' => 'div',
+		 										'container_class' => 'tm-social-menu',
+												'menu_class' => '',
+	                      'fallback_cb' => 'false'
+											));
 		echo '</div>';
-		echo '<p>';
-		echo beans_output( 'beans_footer_credit_text', sprintf(
-				__( '&#x000A9; %1$s - Copyright %2$s. All rights reserved.', 'bench' ),
-				date( "Y" ),
-				get_bloginfo( 'name' )
-			) );
-		echo '</p>';
+
 	?>
+		<div class="uk-text-muted uk-text-small uk-margin-small-top">
+			<?php
+			echo '<div>';
+			echo beans_output( 'beans_footer_credit_text', sprintf(
+					__( '&#x000A9; %1$s - %2$s. All rights reserved.', 'bench' ),
+					date( "Y" ),
+					get_bloginfo( 'name' )
+				) );
+			echo '</div>';
+		 ?>
+					<a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
 		</div>
-	<div class="uk-width-medium-1-2">
+	</div>
+	<div class="uk-width-medium-2-3">
 	<?php bench_bottom_widget_area(); ?>
 	</div>
-</div>
-<div class="uk-text-muted uk-text-small uk-text-center uk-margin-top">
-			<a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
 </div>
 <?php
 }
