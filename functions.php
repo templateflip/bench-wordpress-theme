@@ -107,6 +107,8 @@ function bench_setup_document() {
 
 	// Only applies to singular and not pages
 	if ( is_singular() && !is_page() ) {
+		//remove breadcrumb
+		beans_remove_action( 'beans_breadcrumb' );
 
 		//remove featured image
 		beans_remove_action( 'beans_post_image' );
