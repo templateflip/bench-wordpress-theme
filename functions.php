@@ -256,10 +256,21 @@ beans_add_smart_action( 'beans_footer_credit_right_text_output', 'bench_footer' 
 
 function bench_footer() { ?>
 
-  <a href="http://themes.kanishkkunal.in/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
+  <a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
 
 <?php }
 
+
+//Setup Widgets
+beans_add_smart_action( 'widgets_init', 'fast_monkey_register_widgets');
+
+function fast_monkey_register_widgets() {
+			//Include widget classes
+	 		require_once('widgets/posts.php');
+
+	 		// Regidter widgets
+			register_widget('Bench_Posts_Widget');
+}
 
 //Customizer fields
 
