@@ -253,7 +253,7 @@ function bench_sub_footer_widget_area() {
 	if( !beans_is_active_widget_area( 'sub-footer' ) )
 		return;
 
-	echo beans_open_markup( 'bench_sub_footer', 'section', array( 'class' => 'tm-sub-footer uk-block' ) );
+	echo beans_open_markup( 'bench_sub_footer', 'section', array( 'class' => 'tm-sub-footer' ) );
 
 		echo beans_open_markup( 'beans_fixed_wrap[_sub_footer]', 'div', 'class=uk-container uk-container-center' );
 
