@@ -300,17 +300,12 @@ function bench_footer_content() {
 	<div class="uk-grid uk-text-muted">
 		<div class="uk-width-medium-1-3">
 	<?php
-		echo '<div class="uk-clearfix">';
-		if ( $logo = get_theme_mod( 'beans_logo_image', false ) ) {
-			echo beans_selfclose_markup( 'bench_footer_logo_image', 'img', array(
-				'class' => 'tm-footer-logo uk-align-left uk-margin-right',
-				'src' => esc_url( $logo ),
-				'alt' => esc_attr( $name ),
-				) );
-		}
+		echo '<div class="tm-footer-logo">';
+			bench_site_title();
+		echo '</div>';
 
 		if ($description = get_bloginfo( 'description' )) {
-			echo '<p class="uk-margin-small-top uk-margin-small-bottom">'.$description.'</p>';
+			echo '<p class="uk-margin-small-top uk-margin-bottom">'.$description.'</p>';
 		}
 
 	  wp_nav_menu( array( 'theme_location' => 'social-menu',
@@ -319,10 +314,9 @@ function bench_footer_content() {
 												'menu_class' => '',
 	                      'fallback_cb' => 'false'
 											));
-		echo '</div>';
 
 	?>
-		<div class="uk-text-muted uk-text-small uk-margin-small-top">
+		<div class="uk-text-muted uk-text-small uk-margin-large-top">
 			<?php
 			echo '<div>';
 			echo beans_output( 'beans_footer_credit_text', sprintf(
