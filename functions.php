@@ -266,36 +266,45 @@ function bench_sub_footer_widget_area() {
 }
 
 
-// Add the bottom widget area
-beans_add_smart_action( 'beans_footer_before_markup', 'bench_bottom_widget_area' );
-
+// The bottom widget area
 function bench_bottom_widget_area() {
 
 	// Stop here if no widget
 	if( !beans_is_active_widget_area( 'bottom' ) )
 		return;
 
-	echo beans_open_markup( 'bench_bottom', 'section', array( 'class' => 'tm-bottom uk-block' ) );
-
-		echo beans_open_markup( 'beans_fixed_wrap[_bottom]', 'div', 'class=uk-container uk-container-center' );
-
+	echo beans_open_markup( 'bench_bottom', 'section', array( 'class' => 'tm-bottom' ) );
 			echo beans_widget_area( 'bottom' );
-
-		echo beans_close_markup( 'beans_fixed_wrap[_bottom]', 'div' );
-
 	echo beans_close_markup( 'bench_bottom', 'section' );
-
 }
 
-// Add footer content (filter)
-beans_add_smart_action( 'beans_footer_credit_right_text_output', 'bench_footer' );
+// Overwrite the footer content.
+beans_modify_action_callback( 'beans_footer_content', 'bench_footer_content' );
 
-function bench_footer() { ?>
+function bench_footer_content() {
 
-  <a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
-
-<?php }
-
+	?>
+	<div class="uk-grid uk-text-muted">
+		<div class="uk-width-medium-1-2">
+			<p>
+	<?php
+		echo beans_output( 'beans_footer_credit_text', sprintf(
+				__( '&#x000A9; %1$s - Copyright %2$s. All rights reserved.', 'bench' ),
+				date( "Y" ),
+				get_bloginfo( 'name' )
+			) );
+	?>
+	  	</p>
+			<p class="uk-text-small">
+				<a href="https://kkthemes.com/wordpress/bench/" target="_blank" title="Bench theme for WordPress">Bench</a> theme for <a href="http://wordpress.org" target="_blank">WordPress</a>. Built-with <a href="http://www.getbeans.io/" title="Beans Framework for WordPress" target="_blank">Beans</a>.
+			</p>
+		</div>
+	<div class="uk-width-medium-1-2">
+	<?php bench_bottom_widget_area(); ?>
+	</div>
+</div>
+	<?php
+}
 
 //Setup Widgets
 beans_add_smart_action( 'widgets_init', 'fast_monkey_register_widgets');
