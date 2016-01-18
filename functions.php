@@ -297,3 +297,6 @@ add_action('beans_head_append_markup', 'bench_custom_head_code');
 function bench_custom_head_code() {
 	echo get_theme_mod( 'bench_head_code', '' );
 }
+
+/* Customize Jetpack */
+require 'include/jetpack-custom.php';
