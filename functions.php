@@ -27,6 +27,19 @@ function bench_enqueue_uikit_assets() {
 
 }
 
+// Register sub-footer widget area
+beans_add_smart_action( 'widgets_init', 'bench_register_sub_footer_widget_area' );
+
+function bench_register_sub_footer_widget_area() {
+
+	beans_register_widget_area( array(
+		'name' => 'Sub-Footer',
+		'id' => 'sub-footer',
+		'description' => 'Widgets in this area will be shown above the footer.',
+		'beans_type' => 'stack'
+	) );
+
+}
 
 // Register bottom widget area
 beans_add_smart_action( 'widgets_init', 'bench_register_bottom_widget_area' );
@@ -34,7 +47,7 @@ beans_add_smart_action( 'widgets_init', 'bench_register_bottom_widget_area' );
 function bench_register_bottom_widget_area() {
 
 	beans_register_widget_area( array(
-		'name' => 'Bottom',
+		'name' => 'Bottom Footer',
 		'id' => 'bottom',
 		'description' => 'Widgets in this area will be shown in the bottom section as a grid.',
 		'beans_type' => 'grid'
@@ -228,6 +241,27 @@ function bench_comment_form_defaults( $args ) {
 	$args['comment_notes_after'] = '';
 
 	return $args;
+
+}
+
+// Add the sub-footer widget area
+beans_add_smart_action( 'beans_footer_before_markup', 'bench_sub_footer_widget_area' );
+
+function bench_sub_footer_widget_area() {
+
+	// Stop here if no widget
+	if( !beans_is_active_widget_area( 'sub-footer' ) )
+		return;
+
+	echo beans_open_markup( 'bench_sub_footer', 'section', array( 'class' => 'tm-sub-footer uk-block' ) );
+
+		echo beans_open_markup( 'beans_fixed_wrap[_sub_footer]', 'div', 'class=uk-container uk-container-center' );
+
+			echo beans_widget_area( 'sub-footer' );
+
+		echo beans_close_markup( 'beans_fixed_wrap[_sub_footer]', 'div' );
+
+	echo beans_close_markup( 'bench_sub_footer', 'section' );
 
 }
 
