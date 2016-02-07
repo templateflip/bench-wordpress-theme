@@ -1,7 +1,7 @@
 <?php
 
 // Set the default layout
-add_filter( 'beans_default_layout', 'bench_index_default_layout' );
+add_filter( 'beans_layout', 'bench_index_default_layout' );
 
 function bench_index_default_layout() {
 
