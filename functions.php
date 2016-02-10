@@ -93,8 +93,6 @@ function bench_setup_document() {
 
 	// Site Logo
 	beans_remove_action( 'beans_site_title_tag' );
-	//Add back site title after logo image
-	beans_add_smart_action('beans_logo_image_after_markup', 'bench_site_title');
 
 	// Layout
 	if(beans_get_layout( ) != 'c' && beans_get_layout( ) != 'bench_c') {
@@ -144,9 +142,6 @@ function bench_setup_document() {
 	}
 }
 
-function bench_site_title() {
-	echo beans_output( 'beans_site_title_text', get_bloginfo( 'name' ) );
-}
 
 function bench_site_title_tag() {
 	// Stop here if there isn't a description.
