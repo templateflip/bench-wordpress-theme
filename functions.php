@@ -296,7 +296,19 @@ function bench_footer_content() {
 		<div class="uk-width-medium-1-3">
 	<?php
 		echo '<div class="tm-footer-logo">';
-			bench_site_title();
+			if ( $logo = get_theme_mod( 'beans_logo_image', false ) ) {
+				echo beans_open_markup( 'beans_site_title_link', 'a', array(
+					'href' => esc_url( home_url() ),
+					'rel' => 'home',
+					'itemprop' => 'headline'
+				) );
+					echo beans_selfclose_markup( 'beans_logo_image', 'img', array(
+						'class' => 'tm-logo',
+						'src' => esc_url( $logo ),
+						'alt' => esc_attr( $name ),
+					) );
+				echo beans_close_markup( 'beans_site_title_link', 'a' );
+			}
 		echo '</div>';
 
 		if ($description = get_bloginfo( 'description' )) {
