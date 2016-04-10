@@ -349,9 +349,11 @@ beans_add_smart_action( 'widgets_init', 'fast_monkey_register_widgets');
 function fast_monkey_register_widgets() {
 			//Include widget classes
 	 		require_once('widgets/posts.php');
+	 		require_once('widgets/ads.php');
 
 	 		// Regidter widgets
 			register_widget('Bench_Posts_Widget');
+			register_widget('Bench_Ads_Widget');
 }
 
 //Customizer fields
