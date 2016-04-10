@@ -27,6 +27,28 @@ function bench_enqueue_uikit_assets() {
 
 }
 
+// Register a widget area below header.
+add_action( 'widgets_init', 'bench_below_header_widget_area' );
+function bench_below_header_widget_area() {
+    beans_register_widget_area( array(
+        'name' => 'Below Header',
+        'id' => 'below-header',
+        'beans_type' => 'stack'
+    ) );
+}
+
+beans_add_smart_action('beans_main_prepend_markup', 'bench_below_header_widget_output');
+//Display the Widget area
+function bench_below_header_widget_output() {
+	if(!is_front_page() && !is_page()) {
+	?>
+	<div class="tm-below-header-widget-area">
+			<?php echo beans_widget_area( 'below-header' ); ?>
+	</div>
+	<?php
+	}
+}
+
 // Register sub-footer widget area
 beans_add_smart_action( 'widgets_init', 'bench_register_sub_footer_widget_area' );
 
