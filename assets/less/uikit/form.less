@@ -16,3 +16,19 @@
 .hook-form() {
 	border-radius: @utility-border-rounded;
 }
+
+input[type=submit] {
+		cursor: pointer;
+    color: #fff!important;
+    background-color: @global-primary-background !important;
+    border: none;
+		padding: 0 12px;
+		border-radius: @global-border-radius;
+		line-height: 40px;
+    min-height: 40px;
+    font-size: 1rem;
+}
+
+input[type=submit]:hover {
+	background-color:lighten(@global-primary-background, 10) !important;
+}
