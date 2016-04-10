@@ -4,6 +4,9 @@
 require_once( get_template_directory() . '/lib/init.php' );
 
 
+/* Helpers and utility functions */
+require_once 'include/helpers.php';
+
 // Remove Beans default styling
 remove_theme_support( 'beans-default-styling' );
 
@@ -18,6 +21,8 @@ function bench_enqueue_uikit_assets() {
 
 	// Add the theme style as a uikit fragment to have access to all the variables
 	beans_compiler_add_fragment( 'uikit', get_stylesheet_directory_uri() . '/assets/less/style.less', 'less' );
+	// Add additional UIKit components
+	beans_uikit_enqueue_components( array('smooth-scroll') );
 
 	// Add the theme js as a uikit fragment
 	beans_compiler_add_fragment( 'uikit', get_stylesheet_directory_uri() . '/assets/js/bench.js', 'js' );
@@ -107,6 +112,8 @@ function bench_init() {
 add_action( 'wp', 'bench_setup_document' );
 
 function bench_setup_document() {
+	// Add a top element for scroll
+	beans_add_smart_action('beans_site_before_markup', 'bench_top_element');
 
 	// Frontpage posts
 	if ( is_home() ) {
@@ -362,6 +369,7 @@ function bench_footer_content() {
 	<?php bench_bottom_widget_area(); ?>
 	</div>
 </div>
+	<?php bench_site_toolbar(); ?>
 <?php
 }
 

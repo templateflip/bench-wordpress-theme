@@ -112,3 +112,21 @@ if ( !function_exists( 'bench_read_time' ) ):
 		return false;
 	}
 endif;
+
+
+/* Top element for scroll */
+function bench_top_element() {
+		echo '<div id="top"></div>';
+}
+
+/* Site toolbar for scrolling to top and to show share buttons */
+function bench_site_toolbar() {
+  echo '<div id="tm-toolbar" class="uk-visible-large" style="display:none;">';
+    if ( function_exists( 'sharing_display' ) ) {
+     echo '<div id="tm-jetpack-share-mini" class="uk-align-right uk-hidden-small">';
+       echo sharing_display( '', false );
+     echo '</div>';
+    }
+    echo '<div class="back-to-top"><a href="#top" title="Click to go back to top" data-uk-smooth-scroll><i class="uk-icon-arrow-up"></i></a></div>';
+  echo '</div>';
+}

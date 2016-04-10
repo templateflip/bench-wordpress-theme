@@ -1,5 +1,8 @@
+var toolbar_shown = false;
+
 !(function( $ ) {
 
+    // Search Toggle
     $( document ).on( 'click', '.tm-primary-menu .tm-search-toggle', function() {
 
     	var searchSelector = '.tm-primary-menu .tm-search';
@@ -18,5 +21,23 @@
         }
 
     } );
+
+    // Toolbar toggle
+    $(window).scroll(function() {
+      var height = $(window).scrollTop();
+
+      if(height  > 300) {
+  			if(!toolbar_shown) {
+  					$('#tm-toolbar').slideToggle('fast');
+  			}
+  			toolbar_shown = true;
+      }
+  		else if(height <= 300) {
+  			if(toolbar_shown) {
+  					$('#tm-toolbar').slideToggle('fast');
+  			}
+  			toolbar_shown = false;
+  		}
+  	});
 
 } )( window.jQuery );
