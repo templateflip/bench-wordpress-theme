@@ -264,10 +264,10 @@ function bench_sub_footer_widget_area() {
 }
 
 function bench_add_nav_menu_atts( $atts, $item, $args ) {
-	//check if icon class is applied to menu and apply equivalent uk-icon to nav menu link
+
 	if(count($item->classes) >= 1) {
 		if(substr($item->classes[0], 0, 5) === "icon-") {
-			$atts['class'] = $atts['class'].' uk-'.$item->classes[0];
+			$atts['class'] = 'uk-'.$item->classes[0];
 		}
 	}
   return $atts;
@@ -305,7 +305,7 @@ function bench_footer_content() {
 					echo beans_selfclose_markup( 'beans_logo_image', 'img', array(
 						'class' => 'tm-logo',
 						'src' => esc_url( $logo ),
-						'alt' => esc_attr( $name ),
+						'alt' => esc_attr( get_bloginfo( 'name' ) ),
 					) );
 				echo beans_close_markup( 'beans_site_title_link', 'a' );
 			}
